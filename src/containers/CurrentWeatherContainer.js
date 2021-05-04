@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CurrentWeatherList from "../components/CurrentWeatherList";
 import LocationAsCityForm from "../components/LocationAsCityForm";
 
@@ -19,17 +19,22 @@ function CurrentWeatherContainer(){
     // This is the fetch which provides currentWeather from the API via location which will be input by the user
     const getCurrentWeatherAsCity = (location) => {
     const url = "https://api.weatherbit.io/v2.0/current?city="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
-    // const url = "https://run.mocky.io/v3/74ff75f9-944c-4d7e-a8e8-e26e7c51111d"
+
     console.log("Url: " + url);
     
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setCurrentWeather(data);
         })
 
     }
+
+    // useEffect(() => {
+    //     getCurrentWeatherAsCity();
+    //   }, [])
+    
 
     // Format the user input to the form
     // Pseudocode to format user input for the API
@@ -41,11 +46,12 @@ function CurrentWeatherContainer(){
     
     const formatInput = (userInput) => {
         const lowerCase = userInput.toLowerCase();
-        const inputArray = lowerCase.split(",");
-        const formattedArray = inputArray.map(i => i.trim());
-        const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
-        const formattedString = arrayWithUnderscores.toString();
-    
+        // const inputArray = lowerCase.split(",");
+        // const formattedArray = inputArray.map(i => i.trim());
+        // const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
+        const formattedString = lowerCase;
+        // const formattedString = arrayWithUnderscores.toString();
+        console.log(formattedString);
         return formattedString;
     }
 
