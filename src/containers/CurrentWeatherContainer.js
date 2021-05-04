@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LocationAsCityForm from "../components/LocationAsCityForm";
 
 function CurrentWeatherContainer(){
 
@@ -24,12 +25,35 @@ function CurrentWeatherContainer(){
             setCurrentWeather(data);
         })
 
+    // Format the user input to the form
+    // Pseudocode to format user input for the API
+    // Convert string to lower case
+    // Convert string to array with comma delimiter - .split(“,”)
+    // For each element in the array, get rid of leading and trailing white space - .trim()
+    // For each element in the array, replace any space with an underscore - .replace(“ “, “_”)
+    // Convert the array back to a string
+    const formatInput = (userInput) => {
+        const lowerCase = userInput.toLowerCase();
+        const inputArray = lowerCase.split(",");
+        const formattedArray = inputArray.map(i => i.trim());
+        const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
+        const formattedString = arrayWithUnderscores.toString();
+    
+        return formattedString;
+    }
+
 }
 
 
     return(
         <>
         This is the CurrentWeatherContainer
+        <LocationAsCityForm 
+        location={location}
+        handleLocationAsCitySubmit={handleLocationAsCitySubmit}
+        formatInput={formatInput}
+        />
+
         </>
     )
 
