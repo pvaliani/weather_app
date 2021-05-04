@@ -4,7 +4,7 @@ import {Container, Header, Image, List, Embed, Grid} from 'semantic-ui-react';
 
 function CurrentWeather({weather}){
     // if (!currentWeather) return null;
-    console.log(weather);
+    // console.log(weather);
 
 
     // // Map the currentWeather object properties to render as a list
