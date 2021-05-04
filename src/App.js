@@ -1,4 +1,3 @@
-
 import './App.css';
 import CurrentWeatherContainer from "./containers/CurrentWeatherContainer";
 import ForecastWeatherContainer from "./containers/ForecastWeatherContainer";
