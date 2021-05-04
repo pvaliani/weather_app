@@ -4,12 +4,14 @@ import LocationAsCityForm from "../components/LocationAsCityForm";
 
 function CurrentWeatherContainer(){
 
-    // sets state for the current weather object which is an array
+    // Sets state for the current weather object which is an array
+    // also sets state for the location input by the user
     const [currentWeather, setCurrentWeather] = useState([]);
     const [location, setLocation] = useState("");
 
     
     // handles the location submitted by the "as city" form
+    // invokes the fetch passing the location to getCurrentWeatherAsCity
     const handleLocationAsCitySubmit = (location) => {
         getCurrentWeatherAsCity(location);
     }
@@ -17,6 +19,7 @@ function CurrentWeatherContainer(){
     // This is the fetch which provides currentWeather from the API via location which will be input by the user
     const getCurrentWeatherAsCity = (location) => {
     const url = "https://api.weatherbit.io/v2.0/current?city="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
+    // const url = "https://run.mocky.io/v3/74ff75f9-944c-4d7e-a8e8-e26e7c51111d"
     console.log("Url: " + url);
     
     fetch(url)
@@ -26,7 +29,7 @@ function CurrentWeatherContainer(){
             setCurrentWeather(data);
         })
 
-}
+    }
 
     // Format the user input to the form
     // Pseudocode to format user input for the API
@@ -51,16 +54,16 @@ function CurrentWeatherContainer(){
         <>
         This is the CurrentWeatherContainer
         <LocationAsCityForm 
+        handleLocationAsCitySubmit={handleLocationAsCitySubmit}
         location={location}
         setLocation={setLocation}
-        handleLocationAsCitySubmit={handleLocationAsCitySubmit}
         formatInput={formatInput}
         />
 
-        {/* <CurrentWeatherList 
+        <CurrentWeatherList 
         location={location}
         currentWeather={currentWeather}
-        /> */}
+        />
 
         </>
     )

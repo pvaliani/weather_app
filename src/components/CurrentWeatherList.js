@@ -1,13 +1,17 @@
 import CurrentWeather from './CurrentWeather';
 
 
-function CurrentWeatherList({CurrentWeather}){
+function CurrentWeatherList({currentWeather}){
+    // return nothing if there is no current weather object, otherwise...
+    if (!currentWeather) return null;
 
-    const displayCurrentWeather = CurrentWeather.map(currentWeather => {
+
+    // Map the currentWeather
+    const displayCurrentWeather = currentWeather.map(weather => {
         return <CurrentWeather
-                // key={meal.idMeal}
-                currentWeather={currentWeather}/>
+                currentWeather={weather}/>
     })
+
 
 
     return(

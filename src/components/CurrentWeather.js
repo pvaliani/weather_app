@@ -6,6 +6,8 @@ function CurrentWeather({currentWeather}){
     if (!currentWeather) return null;
     console.log(currentWeather);
 
+
+    // Map the currentWeather object properties to render as a list
     const currentWeatherJSX = currentWeather.map(weatherParam => {
         return (<List.Item>{weatherParam}</List.Item>);
     });
