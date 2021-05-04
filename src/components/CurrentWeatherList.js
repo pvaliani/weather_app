@@ -7,14 +7,14 @@ function CurrentWeatherList({currentWeather}){
     if (!currentWeather) return null;
 
     console.log(currentWeather);
-    console.log(currentWeather.data[0]);
+    console.log(currentWeather.data);
 
 
     // Map the currentWeather
-    // const displayCurrentWeather = currentWeather.data.map(weather => {
-    //     return <CurrentWeather
-    //             weather={weather}/>
-    // })
+    currentWeather.data.map(weather => {
+        return <CurrentWeather
+                weather={weather}/>
+    })
 
     return(
         <>
