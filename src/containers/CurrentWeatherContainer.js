@@ -138,7 +138,7 @@ function CurrentWeatherContainer(){
         {/* The array stored in the "Data" key is sliced to pass only the 7 days of forecast info desired */}
         <ForecastWeatherList 
         location={location}
-        forecastWeather={forecastWeather.data.slice(0,7)}
+        forecastWeather={forecastWeather.data}
         />
 
         
