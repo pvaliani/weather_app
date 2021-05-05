@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import CurrentWeather from "../components/CurrentWeather";
 import CurrentWeatherList from "../components/CurrentWeatherList";
 import LocationAsCityForm from "../components/LocationAsCityForm";
+import LocationAsPostcodeForm from "../components/LocationAsPostcodeForm";
 
 function CurrentWeatherContainer(){
 
@@ -15,6 +16,12 @@ function CurrentWeatherContainer(){
     // invokes the fetch passing the location to getCurrentWeatherAsCity
     const handleLocationAsCitySubmit = (location) => {
         getCurrentWeatherAsCity(location);
+    } 
+
+    // handles the location submitted by the "as post code" form
+    // invokes the fetch passing the location to getCurrentWeatherAsPostcode
+    const handleLocationAsPostcodeSubmit= (location) => {
+        getCurrentWeatherAsPostcode(location);
     } 
 
     // This is the fetch which provides currentWeather from the API via location which will be input by the user
@@ -32,6 +39,21 @@ function CurrentWeatherContainer(){
 
     }
 
+     // This is the fetch which provides currentWeather from the API via location set as post code
+     const getCurrentWeatherAsPostcode = (location) => {
+        const url = "https://api.weatherbit.io/v2.0/current?postal_code="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
+    
+        console.log("Url: " + url);
+        
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                setCurrentWeather(data);
+            })
+    
+        }
+
 
     // Format the user input to the form
     // Pseudocode to format user input for the API
@@ -42,11 +64,11 @@ function CurrentWeatherContainer(){
     // Convert the array back to a string
     
     const formatInput = (userInput) => {
-        const lowerCase = userInput.toUpperCase();
+        const upperCase = userInput.toUpperCase();
         // const inputArray = lowerCase.split(",");
         // const formattedArray = inputArray.map(i => i.trim());
         // const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
-        const formattedString = lowerCase;
+        const formattedString = upperCase;
         // // const formattedString = arrayWithUnderscores.toString();
         // console.log(formattedString);
         return formattedString;
@@ -59,6 +81,13 @@ function CurrentWeatherContainer(){
      
         <LocationAsCityForm 
         handleLocationAsCitySubmit={handleLocationAsCitySubmit}
+        location={location}
+        setLocation={setLocation}
+        formatInput={formatInput}
+        />
+
+        <LocationAsPostcodeForm 
+        handleLocationAsPostcodeSubmit={handleLocationAsPostcodeSubmit}
         location={location}
         setLocation={setLocation}
         formatInput={formatInput}
