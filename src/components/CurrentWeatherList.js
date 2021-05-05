@@ -13,7 +13,6 @@ function CurrentWeatherList({currentWeather}){
         console.log(weather.sunset);
         console.log(weather.datetime)
         return <CurrentWeather
-                datetime={weather.datetime}
                 weatherCondition={weather.weather.description}
                 cityName={weather.city_name}
                 sunsetTime={weather.sunset}
@@ -25,13 +24,11 @@ function CurrentWeatherList({currentWeather}){
            
     })
 
-    // console.log(displayCurrentWeather)
 
     return(
     
         <>
-        {/* {currentWeather} */}
-        
+
         {displayCurrentWeather}
         
         </>

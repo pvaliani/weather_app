@@ -1,26 +1,28 @@
-import {Container, Header, Image, List, Embed, Grid} from 'semantic-ui-react';
+import {Container, Divider, Header, Image, List, Embed, Grid} from 'semantic-ui-react';
 
 
 
-function CurrentWeather({datetime, weatherCondition, cityName, sunsetTime, currentTemperature, sunriseTime, observedTime}){
-   if (!datetime) return null
+function CurrentWeather({ weatherCondition, cityName, sunsetTime, currentTemperature, sunriseTime, observedTime}){
+   if (!CurrentWeather) return null
 //    console.log(datetime + "HIIIIIII")
 
     return(
         <>
+      
         <Container>
             <Grid>
             <Grid.Column textAlign="center">
-                <Container>DATE: {datetime}  </Container>
-                <Container>WEATHER CONDITION: {weatherCondition} </Container>
-                <Container>CITY NAME: {cityName} </Container> 
-                <Container>SUNRISE TIME:{sunriseTime} </Container> 
-                <Container>SUNSET TIME: {sunsetTime} </Container> 
-                <Container>CURRENT TEMP: {currentTemperature} °C </Container> 
-                <Container>TIME WEATHER LAST OBSERVED: {observedTime} </Container> 
+                <Container><Header as="h3">Location: {cityName} </Header></Container> 
+                <Container>Current Weather Condition: {weatherCondition} </Container>
+                <Container>Current Temperature: {currentTemperature} °C </Container> 
+                <Container>Sunrise Time:{sunriseTime} </Container> 
+                <Container>Sunset Time: {sunsetTime} </Container> 
+                <Container>Weather Last Observed At: {observedTime} </Container> 
+                <Divider></Divider>
             </Grid.Column>
             </Grid>
         </Container>
+       
         </>
     )
 

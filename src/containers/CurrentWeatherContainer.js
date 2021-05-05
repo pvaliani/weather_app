@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import CurrentWeather from "../components/CurrentWeather";
 import CurrentWeatherList from "../components/CurrentWeatherList";
+import ForecastWeather from "../components/ForecastWeather";
+import ForecastWeatherList from "../components/ForecastWeatherList";
 import LocationAsCityForm from "../components/LocationAsCityForm";
 import LocationAsPostcodeForm from "../components/LocationAsPostcodeForm";
+import { Divider} from 'semantic-ui-react';
 
 function CurrentWeatherContainer(){
 
     // Sets state for the current weather object which is an array
     // also sets state for the location input by the user
     const [currentWeather, setCurrentWeather] = useState([{}]);
+    const [forecastWeather, setForecastWeather] = useState([{}]);
     const [location, setLocation] = useState("");
 
     
@@ -16,12 +20,14 @@ function CurrentWeatherContainer(){
     // invokes the fetch passing the location to getCurrentWeatherAsCity
     const handleLocationAsCitySubmit = (location) => {
         getCurrentWeatherAsCity(location);
+        getForecastWeatherAsCity(location);
     } 
 
     // handles the location submitted by the "as post code" form
     // invokes the fetch passing the location to getCurrentWeatherAsPostcode
     const handleLocationAsPostcodeSubmit= (location) => {
         getCurrentWeatherAsPostcode(location);
+        getForecastWeatherAsPostcode(location);
     } 
 
     // This is the fetch which provides currentWeather from the API via location which will be input by the user
@@ -53,6 +59,36 @@ function CurrentWeatherContainer(){
             })
     
         }
+
+     // This is the fetch which provides forecastWeather from the API via location which will be input by the user
+     const getForecastWeatherAsCity = (location) => {
+        const url = "https://api.weatherbit.io/v2.0/forecast/daily?city="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
+    
+        console.log("Url: " + url);
+        
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                setForecastWeather(data);
+            })
+    
+        }
+    
+         // This is the fetch which provides forecastWeather from the API via location set as post code
+         const getForecastWeatherAsPostcode = (location) => {
+            const url = "https://api.weatherbit.io/v2.0/forecast/daily?postal_code="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
+        
+            console.log("Url: " + url);
+            
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    setForecastWeather(data);
+                })
+        
+            }
 
 
     // Format the user input to the form
@@ -99,7 +135,16 @@ function CurrentWeatherContainer(){
         currentWeather={currentWeather.data}
         />
 
-        <CurrentWeather />
+        <ForecastWeatherList 
+        location={location}
+        forecastWeather={forecastWeather.data}
+        />
+
+        
+        <Divider>
+            <ForecastWeather />
+        </Divider>
+       
 
         </>
     )
