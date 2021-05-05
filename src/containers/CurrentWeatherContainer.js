@@ -15,7 +15,7 @@ function CurrentWeatherContainer(){
     // invokes the fetch passing the location to getCurrentWeatherAsCity
     const handleLocationAsCitySubmit = (location) => {
         getCurrentWeatherAsCity(location);
-    }
+    } 
 
     // This is the fetch which provides currentWeather from the API via location which will be input by the user
     const getCurrentWeatherAsCity = (location) => {
