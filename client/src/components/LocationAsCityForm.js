@@ -12,7 +12,7 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
         // console.log(location);
     }
 
-    const submitIngredients = (event) => {
+    const submitLocation = (event) => {
         event.preventDefault();
         handleLocationAsCitySubmit(location);
     
@@ -20,7 +20,7 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
     return (
         <> 
             
-            <Form className="form-box" onSubmit={submitIngredients}>
+            <Form className="form-box" onSubmit={submitLocation}>
                              
                     <Form.Field>
                     <Header>Find Weather by City Name:</Header>

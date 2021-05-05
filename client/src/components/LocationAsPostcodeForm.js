@@ -8,7 +8,7 @@ function LocationAsPostcodeForm({handleLocationAsPostcodeSubmit, location, setLo
      
     }
 
-    const submitIngredients = (event) => {
+    const submitLocation = (event) => {
         event.preventDefault();
         handleLocationAsPostcodeSubmit(location);
     
@@ -16,7 +16,7 @@ function LocationAsPostcodeForm({handleLocationAsPostcodeSubmit, location, setLo
     return (
         <> 
             
-            <Form className="form-box" onSubmit={submitIngredients}>
+            <Form className="form-box" onSubmit={submitLocation}>
                              
                     <Form.Field>
                     <Header>Find Weather by Postcode:</Header>

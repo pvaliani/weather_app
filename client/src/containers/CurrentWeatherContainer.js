@@ -6,6 +6,7 @@ import ForecastWeatherList from "../components/ForecastWeatherList";
 import LocationAsCityForm from "../components/LocationAsCityForm";
 import LocationAsPostcodeForm from "../components/LocationAsPostcodeForm";
 import { Divider} from 'semantic-ui-react';
+import { postWeather } from "../WeatherService";
 
 function CurrentWeatherContainer(){
 
@@ -14,6 +15,15 @@ function CurrentWeatherContainer(){
     const [currentWeather, setCurrentWeather] = useState([{}]);
     const [forecastWeather, setForecastWeather] = useState([{}]);
     const [location, setLocation] = useState("");
+    const [weatherSaves, setWeatherSaves] = useState([]);
+
+    // add a weatherSave after setting the state of an array to hold
+    // the searches
+    const addWeatherSave = (weatherSave) =>{
+        const temp = weatherSaves.map(s =>s);
+        temp.push(weatherSave);
+        setWeatherSaves(temp);
+      }
 
     
     // handles the location submitted by the "as city" form
@@ -41,7 +51,13 @@ function CurrentWeatherContainer(){
         .then(data => {
             // console.log(data);
             setCurrentWeather(data);
+            postWeather(data).then(()=>{
+                addWeatherSave(data);
+            })
+        
         })
+
+       
 
     }
 
