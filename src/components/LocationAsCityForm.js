@@ -1,4 +1,4 @@
-import { Form, Input } from 'semantic-ui-react'
+import { Header, Form, Input } from 'semantic-ui-react'
 import CurrentWeather from './CurrentWeather';
 
 
@@ -23,7 +23,7 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
             <Form className="form-box" onSubmit={submitIngredients}>
                              
                     <Form.Field>
-                    <label>Enter your location</label>
+                    <Header>Enter your location:</Header>
                     <Input action='Search' placeholder='e.g. Edinburgh, UK...' onChange={handleInput}/>
                     </Form.Field>              
            </Form>

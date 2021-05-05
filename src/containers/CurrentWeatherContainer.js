@@ -33,10 +33,6 @@ function CurrentWeatherContainer(){
 
     }
 
-    // useEffect(() => {
-    //     getCurrentWeatherAsCity();
-    //   }, [])
-    
 
     // Format the user input to the form
     // Pseudocode to format user input for the API
@@ -61,14 +57,15 @@ function CurrentWeatherContainer(){
 
     return(
         <>
-        This is the CurrentWeatherContainer
+     
         <LocationAsCityForm 
         handleLocationAsCitySubmit={handleLocationAsCitySubmit}
         location={location}
         setLocation={setLocation}
         formatInput={formatInput}
         />
-
+        
+        {/* Passes the array associated with the data key to currentWeatherList as props */}
         <CurrentWeatherList 
         location={location}
         currentWeather={currentWeather.data}
