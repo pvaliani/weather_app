@@ -69,7 +69,7 @@ function CurrentWeatherContainer(){
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
+                console.log(data);
                 setForecastWeather(data);
             })
     
@@ -135,9 +135,10 @@ function CurrentWeatherContainer(){
         currentWeather={currentWeather.data}
         />
 
+        {/* The array stored in the "Data" key is sliced to pass only the 7 days of forecast info desired */}
         <ForecastWeatherList 
         location={location}
-        forecastWeather={forecastWeather.data}
+        forecastWeather={forecastWeather.data.slice(0,7)}
         />
 
         
