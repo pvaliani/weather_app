@@ -6,7 +6,8 @@ import ForecastWeatherList from "../components/ForecastWeatherList";
 import LocationAsCityForm from "../components/LocationAsCityForm";
 import LocationAsPostcodeForm from "../components/LocationAsPostcodeForm";
 import { Divider} from 'semantic-ui-react';
-import { postWeather } from "../WeatherService";
+import { getWeathers, postWeather } from "../WeatherService";
+import WeatherGrid from "../components/WeatherGrid";
 
 function CurrentWeatherContainer(){
 
@@ -24,6 +25,14 @@ function CurrentWeatherContainer(){
         temp.push(weatherSave);
         setWeatherSaves(temp);
       }
+
+    useEffect(()=>{
+    getWeathers().then((allWeathers)=>{
+        setWeatherSaves(allWeathers);
+    })
+    }, []);
+
+    
 
     
     // handles the location submitted by the "as city" form
@@ -51,15 +60,19 @@ function CurrentWeatherContainer(){
         .then(data => {
             // console.log(data);
             setCurrentWeather(data);
+            // once we have the data from the fetch post this 
+            // to the back end
             postWeather(data).then(()=>{
                 addWeatherSave(data);
             })
+          
         
         })
-
-       
+    
 
     }
+
+ 
 
      // This is the fetch which provides currentWeather from the API via location set as post code
      const getCurrentWeatherAsPostcode = (location) => {
@@ -72,6 +85,7 @@ function CurrentWeatherContainer(){
             .then(data => {
                 // console.log(data);
                 setCurrentWeather(data);
+                
             })
     
         }
@@ -87,6 +101,9 @@ function CurrentWeatherContainer(){
             .then(data => {
                 console.log(data);
                 setForecastWeather(data);
+               
+               
+            
             })
     
         }
@@ -161,6 +178,9 @@ function CurrentWeatherContainer(){
         <Divider>
             <ForecastWeather />
         </Divider>
+
+        <WeatherGrid weatherSaves={weatherSaves}/>
+
        
 
         </>
