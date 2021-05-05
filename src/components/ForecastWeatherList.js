@@ -6,9 +6,8 @@ function ForecastWeatherList({forecastWeather}){
     // return nothing if there is no current weather object, otherwise...
     if (!forecastWeather) return null;
 
+    //  The array stored in the "Data" key is sliced to pass only the 7 days of forecast info desired 
     const slicedForecastInfo = forecastWeather.slice(0,7);
-
-    // console.log(forecastWeather);
 
     // Map forecastWeather array to access the JSON keys
     const displayForecastWeather = slicedForecastInfo.map(weather => {
@@ -17,9 +16,7 @@ function ForecastWeatherList({forecastWeather}){
                 datetime={weather.datetime}
                 weatherCondition={weather.weather.description}
                 currentTemperature={weather.temp}
-
                 />
-                
            
     })
 
