@@ -20,7 +20,6 @@ function CurrentWeatherList({currentWeather}){
                 sunriseTime={weather.sunrise}
                 currentTemperature={weather.temp}
                 observedTime={weather.ob_time}
-                weatherIcon={weather.weather.icon}
 
                 />
            

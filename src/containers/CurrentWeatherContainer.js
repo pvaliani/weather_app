@@ -20,7 +20,6 @@ function CurrentWeatherContainer(){
     // This is the fetch which provides currentWeather from the API via location which will be input by the user
     const getCurrentWeatherAsCity = (location) => {
     const url = "https://api.weatherbit.io/v2.0/current?city="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
-    // const url = "https://api.weatherbit.io/v2.0/current?city=edinburgh,UK&key=42f951c1eea94e33a68cd790a1f613fb"
 
     console.log("Url: " + url);
     

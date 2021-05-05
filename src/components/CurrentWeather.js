@@ -2,7 +2,7 @@ import {Container, Header, Image, List, Embed, Grid} from 'semantic-ui-react';
 
 
 
-function CurrentWeather({datetime, weatherCondition, cityName, sunsetTime, currentTemperature, sunriseTime, observedTime, weatherIcon}){
+function CurrentWeather({datetime, weatherCondition, cityName, sunsetTime, currentTemperature, sunriseTime, observedTime}){
    if (!datetime) return null
 //    console.log(datetime + "HIIIIIII")
 
@@ -13,7 +13,6 @@ function CurrentWeather({datetime, weatherCondition, cityName, sunsetTime, curre
             <Grid.Column textAlign="center">
                 <Container>DATE: {datetime}  </Container>
                 <Container>WEATHER CONDITION: {weatherCondition} </Container>
-                <Container>ICON: <Image src={weatherIcon} /> </Container> 
                 <Container>CITY NAME: {cityName} </Container> 
                 <Container>SUNRISE TIME:{sunriseTime} </Container> 
                 <Container>SUNSET TIME: {sunsetTime} </Container> 

@@ -23,7 +23,7 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
             <Form className="form-box" onSubmit={submitIngredients}>
                              
                     <Form.Field>
-                    <Header>Enter your location:</Header>
+                    <Header>Find Weather by City Name:</Header>
                     <Input action='Search' placeholder='e.g. Edinburgh, UK...' onChange={handleInput}/>
                     </Form.Field>              
            </Form>
