@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import CurrentWeather from "../components/CurrentWeather";
 import CurrentWeatherList from "../components/CurrentWeatherList";
 import LocationAsCityForm from "../components/LocationAsCityForm";
 
@@ -6,7 +7,7 @@ function CurrentWeatherContainer(){
 
     // Sets state for the current weather object which is an array
     // also sets state for the location input by the user
-    const [currentWeather, setCurrentWeather] = useState([]);
+    const [currentWeather, setCurrentWeather] = useState([{}]);
     const [location, setLocation] = useState("");
 
     
@@ -19,6 +20,7 @@ function CurrentWeatherContainer(){
     // This is the fetch which provides currentWeather from the API via location which will be input by the user
     const getCurrentWeatherAsCity = (location) => {
     const url = "https://api.weatherbit.io/v2.0/current?city="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
+    // const url = "https://api.weatherbit.io/v2.0/current?city=edinburgh,UK&key=42f951c1eea94e33a68cd790a1f613fb"
 
     console.log("Url: " + url);
     
@@ -45,14 +47,15 @@ function CurrentWeatherContainer(){
     // Convert the array back to a string
     
     const formatInput = (userInput) => {
-        const lowerCase = userInput.toLowerCase();
+        const lowerCase = userInput.toUpperCase();
         // const inputArray = lowerCase.split(",");
         // const formattedArray = inputArray.map(i => i.trim());
         // const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
         const formattedString = lowerCase;
-        // const formattedString = arrayWithUnderscores.toString();
-        console.log(formattedString);
+        // // const formattedString = arrayWithUnderscores.toString();
+        // console.log(formattedString);
         return formattedString;
+        // return userInput
     }
 
 
@@ -68,8 +71,10 @@ function CurrentWeatherContainer(){
 
         <CurrentWeatherList 
         location={location}
-        currentWeather={currentWeather}
+        currentWeather={currentWeather.data}
         />
+
+        <CurrentWeather />
 
         </>
     )

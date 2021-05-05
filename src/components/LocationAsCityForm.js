@@ -1,4 +1,5 @@
 import { Form, Input } from 'semantic-ui-react'
+import CurrentWeather from './CurrentWeather';
 
 
 
@@ -18,7 +19,7 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
     }
     return (
         <> 
-    
+            
             <Form className="form-box" onSubmit={submitIngredients}>
                              
                     <Form.Field>

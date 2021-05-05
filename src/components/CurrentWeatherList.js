@@ -7,23 +7,26 @@ function CurrentWeatherList({currentWeather}){
     if (!currentWeather) return null;
 
     console.log(currentWeather);
-    console.log(currentWeather.count);
+    // console.log(currentWeather.count);
 
 
     // Map the currentWeather
-    // const displayCurrentWeather = currentWeather.data.map(weather => {
-    //     return <CurrentWeather
-    //             weather={weather}/>
-    // })
+    const displayCurrentWeather = currentWeather.map(weather => {
+        console.log(weather.sunset);
+        console.log(weather.datetime)
+        return <CurrentWeather
+                datetime={weather.datetime}/>
+           
+    })
 
     // console.log(displayCurrentWeather)
 
     return(
     
         <>
-        {currentWeather.count}
-
-        {/* {displayCurrentWeather} */}
+        {/* {currentWeather} */}
+        
+        {displayCurrentWeather}
         
         </>
     )
