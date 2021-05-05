@@ -26,6 +26,15 @@ function CurrentWeatherContainer(){
         setWeatherSaves(temp);
       }
 
+    const removeWeatherSave = (id) => {
+        const temp = weatherSaves.map(s =>s);
+        const indexToDel = temp.map(s => s._id).indexOf(id);
+        console.log(indexToDel);
+    
+        temp.splice(indexToDel, 1);
+        setWeatherSaves(temp);
+    }
+
     useEffect(()=>{
     getWeathers().then((allWeathers)=>{
         setWeatherSaves(allWeathers);
@@ -179,7 +188,7 @@ function CurrentWeatherContainer(){
             <ForecastWeather />
         </Divider>
 
-        <WeatherGrid weatherSaves={weatherSaves}/>
+        <WeatherGrid weatherSaves={weatherSaves} removeWeatherSave={removeWeatherSave}/>
 
        
 
