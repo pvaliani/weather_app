@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import CurrentWeather from "../components/CurrentWeather";
 import CurrentWeatherList from "../components/CurrentWeatherList";
 import ForecastWeather from "../components/ForecastWeather";
 import ForecastWeatherList from "../components/ForecastWeatherList";
 import LocationAsCityForm from "../components/LocationAsCityForm";
 import LocationAsPostcodeForm from "../components/LocationAsPostcodeForm";
-import { Header, Divider} from 'semantic-ui-react';
+import { Divider} from 'semantic-ui-react';
 import { getWeathers, postWeather } from "../WeatherService";
 import WeatherGrid from "../components/WeatherGrid";
 import LocationAsLatLonForm from "../components/LocationAsLatLonForm";
+
 
 function CurrentWeatherContainer(){
 
@@ -19,14 +19,17 @@ function CurrentWeatherContainer(){
     const [location, setLocation] = useState("");
     const [weatherSaves, setWeatherSaves] = useState([]);
 
-    // add a weatherSave after setting the state of an array to hold
-    // the searches
+    // add a weatherSave object after setting the state of an array to hold
+    // the user search
     const addWeatherSave = (weatherSave) =>{
         const temp = weatherSaves.map(s =>s);
         temp.push(weatherSave);
         setWeatherSaves(temp);
       }
 
+    
+    // remove a weatherSave object after setting the state of an array to hold
+    // the user search
     const removeWeatherSave = (id) => {
         const temp = weatherSaves.map(s =>s);
         const indexToDel = temp.map(s => s._id).indexOf(id);
@@ -36,6 +39,7 @@ function CurrentWeatherContainer(){
         setWeatherSaves(temp);
     }
 
+    // Trigger a re-render when weather objects from the database need to appear on the front end view
     useEffect(()=>{
     getWeathers().then((allWeathers)=>{
         setWeatherSaves(allWeathers);
@@ -69,23 +73,17 @@ function CurrentWeatherContainer(){
 
 
 
-
-
-    // This is the fetch which provides currentWeather from the API via location which will be input by the user
+    // This is the fetch which provides currentWeather by city from the API via location which will be input by the user
     const getCurrentWeatherAsCity = (location) => {
     const url = "https://api.weatherbit.io/v2.0/current?city="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
-
-    console.log("Url: " + url);
     
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            // console.log(data);
             setCurrentWeather(data);
             // once we have the data from the fetch post this 
             // to the back end
             postWeather(data).then((returnedData)=>{
-               
                 addWeatherSave(returnedData);
             })
           
@@ -98,18 +96,15 @@ function CurrentWeatherContainer(){
       const getCurrentWeatherAsLatLon = (location) => {
         const inputArray = location.split(",");
         const url = "https://api.weatherbit.io/v2.0/current?lat="+inputArray[0]+"&lon="+inputArray[1]+"&key=42f951c1eea94e33a68cd790a1f613fb"
-        console.log(location);
-        console.log("Url: " + url);
-        
+       
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
                 setCurrentWeather(data);
                 // once we have the data from the fetch post this 
                 // to the back end
-                postWeather(data).then(()=>{
-                    addWeatherSave(data);
+                postWeather(data).then((returnedData)=>{
+                    addWeatherSave(returnedData);
                 })
               
             
@@ -118,22 +113,16 @@ function CurrentWeatherContainer(){
         }
 
 
-
-
-
      // This is the fetch which provides currentWeather from the API via location set as post code
      const getCurrentWeatherAsPostcode = (location) => {
         const url = "https://api.weatherbit.io/v2.0/current?postal_code="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
-    
-        console.log("Url: " + url);
         
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
                 setCurrentWeather(data);
-                postWeather(data).then(()=>{
-                    addWeatherSave(data);
+                postWeather(data).then((returnedData)=>{
+                    addWeatherSave(returnedData);
                 })
                 
             })
@@ -144,12 +133,9 @@ function CurrentWeatherContainer(){
      const getForecastWeatherAsCity = (location) => {
         const url = "https://api.weatherbit.io/v2.0/forecast/daily?city="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
     
-        console.log("Url: " + url);
-        
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setForecastWeather(data);
                
                
@@ -161,13 +147,10 @@ function CurrentWeatherContainer(){
          // This is the fetch which provides forecastWeather from the API via location set as post code
          const getForecastWeatherAsPostcode = (location) => {
             const url = "https://api.weatherbit.io/v2.0/forecast/daily?postal_code="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
-        
-            console.log("Url: " + url);
             
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data);
                     setForecastWeather(data);
                 })
         
@@ -179,13 +162,10 @@ function CurrentWeatherContainer(){
         const getForecastWeatherAsLatLon = (location) => {
             const inputArray = location.split(",");
             const url = "https://api.weatherbit.io/v2.0/current?lat="+inputArray[0]+"&lon="+inputArray[1]+"&key=42f951c1eea94e33a68cd790a1f613fb"
-            console.log(location);
-            console.log("Url: " + url);
-            
+
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data);
                     setForecastWeather(data);
                 })
         
@@ -202,32 +182,20 @@ function CurrentWeatherContainer(){
     
     const formatInput = (userInput) => {
         const upperCase = userInput.toUpperCase();
-        // const inputArray = upperCase.split(",");
-        // const formattedArray = inputArray.map(i => i.trim());
-        // const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
         const formattedString = upperCase;
-        // // const formattedString = arrayWithUnderscores.toString();
-        // console.log(formattedString);
         return formattedString;
-        // return userInput
     }
 
     const formatInputLatLon = (userInput) => {
         const upperCase = userInput.toUpperCase();
         const inputArray = upperCase.split(",");
-        // console.log(inputArray);
         const formattedArray = inputArray.map(i => i.trim());
-        console.log(formattedArray);
-        // const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
         const formattedString = formattedArray;
-        // // const formattedString = arrayWithUnderscores.toString();
         return formattedString;
-        // return userInput
+        
     }
 
-
-
-
+    // pass state down to the respective components from the API fetch and after input handling
     return(
         <>
         <LocationAsCityForm 

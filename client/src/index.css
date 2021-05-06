@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -19,4 +20,5 @@ code {
   padding-top: 30px;
   padding-bottom: 50px;
   align-items: center;
+
 }

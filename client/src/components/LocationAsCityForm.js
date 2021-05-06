@@ -1,13 +1,13 @@
 import { Header, Form, Input } from 'semantic-ui-react'
 
-
 function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, formatInput}) {
 
+    // handles the text formatted from the search form once it is in the correct format
+    // required by the API
     const handleInput = (event) => {
         const formattedInput = formatInput(event.target.value);
-        // console.log(formattedInput);
         setLocation(formattedInput);
-        // console.log(location);
+
     }
 
     const submitLocation = (event) => {
@@ -18,11 +18,11 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
     return (
         <> 
             
-            <Form color="black" className="form-box" onSubmit={submitLocation}>
+            <Form className="form-box" onSubmit={submitLocation}>
                              
                     <Form.Field>
                     <Header>Find Weather by City Name:</Header>
-                    <Input action='Search' placeholder='e.g. Edinburgh, UK...' onChange={handleInput}/>
+                    <Input icon='search' placeholder='e.g. Edinburgh, UK...' onChange={handleInput}/>
                     </Form.Field>              
            </Form>
 

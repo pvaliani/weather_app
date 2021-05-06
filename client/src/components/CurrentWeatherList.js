@@ -1,16 +1,13 @@
 import CurrentWeather from './CurrentWeather';
-import { postWeather } from "../WeatherService";
 
-// currentWeather in this location is the array stored in the data key from the Weatherbit API
+// currentWeather is the array stored in the data key of the object from the Weatherbit API
 
 function CurrentWeatherList({currentWeather}){
+
     // return nothing if there is no current weather object, otherwise...
     if (!currentWeather) return null;
 
- 
-    // console.log(currentWeather);
-
-    // Map currentWeather array to access the JSON keys
+    // Map currentWeather array to access the JSON keys and pass as props for rendering to view
     const displayCurrentWeather = currentWeather.map(weather => {
         return <CurrentWeather
                 weatherCondition={weather.weather.description}
