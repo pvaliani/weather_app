@@ -19,7 +19,7 @@ function CurrentWeather({ weatherCondition, cityName, sunsetTime, currentTempera
                 <Container>Current Temperature: {currentTemperature} °C </Container> 
                 <Container>Sunrise Time:{sunriseTime} </Container> 
                 <Container>Sunset Time: {sunsetTime} </Container> 
-                <Container>Weather Last Observed At: {observedTime} </Container> 
+                <Container>Weather Last Observed At {observedTime} </Container> 
                 <Divider></Divider>
             </Grid.Column>
             </Grid>

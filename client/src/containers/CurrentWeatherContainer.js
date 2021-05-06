@@ -84,8 +84,9 @@ function CurrentWeatherContainer(){
             setCurrentWeather(data);
             // once we have the data from the fetch post this 
             // to the back end
-            postWeather(data).then(()=>{
-                addWeatherSave(data);
+            postWeather(data).then((returnedData)=>{
+               
+                addWeatherSave(returnedData);
             })
           
         

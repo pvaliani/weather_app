@@ -72,6 +72,7 @@ const createRouter = function (collection) {
 
   // DELETE - by id i.e one item
   router.delete("/:id", (req, res)=>{
+    console.log(req.params.id);
     const id = req.params.id;
     collection.deleteOne({ _id: ObjectID(id)})
     .then((result)=>{

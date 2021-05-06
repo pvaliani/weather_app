@@ -12,9 +12,9 @@ function ForecastWeather({datetime, weatherCondition,currentTemperature}){
         <Container>
             <Grid>
             <Grid.Column textAlign="center">
-                <Container><Header as="h4">Forecast Date: {datetime} </Header></Container>
-                <Container>Forecast Weather Condition: {weatherCondition} </Container>
-                <Container>Forecast Temperature: {currentTemperature} °C </Container> 
+                <Container><Header as="h4">Date: {datetime} </Header></Container>
+                <Container>Condition: {weatherCondition} </Container>
+                <Container>Temperature: {currentTemperature} °C </Container> 
             
             </Grid.Column>
             </Grid>

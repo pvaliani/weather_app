@@ -17,6 +17,7 @@ export const postWeather = (payload) => {
 }
 
 export const deleteWeather = (id) => {
+    console.log(id);
     return fetch(baseURL + id, {
         method: 'DELETE'
     })

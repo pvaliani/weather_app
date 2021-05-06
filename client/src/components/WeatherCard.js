@@ -3,7 +3,8 @@ import { Button } from 'semantic-ui-react'
 
 const WeatherCard = ({weatherSave, removeWeatherSave}) => {
 
-    console.log(weatherSave.data);
+    
+    console.log(weatherSave);
 
     const handleDelete = () => {
         deleteWeather(weatherSave._id).then(()=>{
