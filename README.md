@@ -10,6 +10,12 @@ Recent searches are saved to a MongoDB database and returned on the front end to
   - MongoDB
   - Express
 
+# How to run the app
+- Install packages in client and server folders separately via npm install
+- ```pm run server:dev``` within server
+- Npm run start within client
+- Npm run seeds can be used to clear the DB or run custom seeds of location data
+
 # Main page
 
 ![image](https://user-images.githubusercontent.com/72317734/117377129-7127e980-aeca-11eb-9561-0049063e5619.png)
