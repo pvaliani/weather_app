@@ -95,14 +95,15 @@ function CurrentWeatherContainer(){
 
       // This is the fetch which provides currentWeather from the API via location which will be input by the user as Lat/Lon
       const getCurrentWeatherAsLatLon = (location) => {
-        const url = "https://api.weatherbit.io/v2.0/current?lat="+location[0]+"&lon="+location[1]+"&key=42f951c1eea94e33a68cd790a1f613fb"
-    
+        const inputArray = location.split(",");
+        const url = "https://api.weatherbit.io/v2.0/current?lat="+inputArray[0]+"&lon="+inputArray[1]+"&key=42f951c1eea94e33a68cd790a1f613fb"
+        console.log(location);
         console.log("Url: " + url);
         
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setCurrentWeather(data);
                 // once we have the data from the fetch post this 
                 // to the back end
@@ -173,9 +174,11 @@ function CurrentWeatherContainer(){
 
 
         // This is the fetch which provides forecastWeather from the API via location set as post code
+        // location is still a string here i think and it isn't receiving the proper formatted array?
         const getForecastWeatherAsLatLon = (location) => {
-            const url = "https://api.weatherbit.io/v2.0/current?lat="+location[0]+"&lon="+location[1]+"&key=42f951c1eea94e33a68cd790a1f613fb"
-        
+            const inputArray = location.split(",");
+            const url = "https://api.weatherbit.io/v2.0/current?lat="+inputArray[0]+"&lon="+inputArray[1]+"&key=42f951c1eea94e33a68cd790a1f613fb"
+            console.log(location);
             console.log("Url: " + url);
             
             fetch(url)
@@ -211,14 +214,17 @@ function CurrentWeatherContainer(){
     const formatInputLatLon = (userInput) => {
         const upperCase = userInput.toUpperCase();
         const inputArray = upperCase.split(",");
+        // console.log(inputArray);
         const formattedArray = inputArray.map(i => i.trim());
+        console.log(formattedArray);
         // const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
         const formattedString = formattedArray;
         // // const formattedString = arrayWithUnderscores.toString();
-        console.log(formattedString);
         return formattedString;
         // return userInput
     }
+
+
 
 
     return(

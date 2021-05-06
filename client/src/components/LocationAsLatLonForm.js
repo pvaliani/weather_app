@@ -4,6 +4,7 @@ function LocationAsLatLonForm({handleLocationAsLatLonSubmit, location, setLocati
 
     const handleInput = (event) => {
         const formattedInput = formatInput(event.target.value);
+        // console.log(formattedInput)
         setLocation(formattedInput);
      
     }
