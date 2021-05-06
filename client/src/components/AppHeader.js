@@ -1,4 +1,4 @@
-import { Header, Image } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 import weatherbitLogo from '../assets/weatherbitLogo.png';
 
 function AppHeader(){
@@ -6,8 +6,8 @@ function AppHeader(){
     return(
         <>
          <Header className="appHeader" textAlign="center"  as='h1'>
-          <Image src={weatherbitLogo} /> 
         </Header>
+        <img src={weatherbitLogo}></img> 
         </>
     )
 

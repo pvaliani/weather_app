@@ -18,7 +18,7 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
     return (
         <> 
             
-            <Form className="form-box" onSubmit={submitLocation}>
+            <Form color="black" className="form-box" onSubmit={submitLocation}>
                              
                     <Form.Field>
                     <Header>Find Weather by City Name:</Header>

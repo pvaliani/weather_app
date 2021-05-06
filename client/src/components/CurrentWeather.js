@@ -12,7 +12,9 @@ function CurrentWeather({ weatherCondition, cityName, sunsetTime, currentTempera
         <Container>
             <Grid>
             <Grid.Column textAlign="center">
-                <Container><Header as="h3">Location: {cityName} </Header></Container> 
+            <Divider></Divider>
+                <Container><Header as="h2">Current Weather in {cityName}: </Header></Container> 
+                <Divider></Divider>
                 <Container>Current Weather Condition: {weatherCondition} </Container>
                 <Container>Current Temperature: {currentTemperature} °C </Container> 
                 <Container>Sunrise Time:{sunriseTime} </Container> 

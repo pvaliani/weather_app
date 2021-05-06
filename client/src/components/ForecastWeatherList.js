@@ -1,4 +1,5 @@
 import ForecastWeather from './ForecastWeather';
+import {Divider, Container, Header} from 'semantic-ui-react';
 
 // forecastWeather in this location is the array stored in the data key from the Weatherbit API
 
@@ -24,7 +25,8 @@ function ForecastWeatherList({forecastWeather}){
     
         <>
 
-     
+<Container><Header as="h2">7 Day Forecast:</Header></Container> 
+<Divider></Divider>
         {displayForecastWeather}
         
         </>

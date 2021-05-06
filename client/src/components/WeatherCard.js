@@ -1,8 +1,9 @@
 import { deleteWeather } from "../WeatherService"
+import { Button } from 'semantic-ui-react'
 
 const WeatherCard = ({weatherSave, removeWeatherSave}) => {
 
-    // console.log(weatherSave);
+    console.log(weatherSave.data);
 
     const handleDelete = () => {
         deleteWeather(weatherSave._id).then(()=>{
@@ -13,10 +14,10 @@ const WeatherCard = ({weatherSave, removeWeatherSave}) => {
     return (
         <>
             
-            <h1>City:{weatherSave.data[0]['city_name']}, {weatherSave.data[0]['country_code']} </h1>
+            <h3>City: {weatherSave.data[0]['city_name']}, {weatherSave.data[0]['country_code']} </h3>
             <p>Forecast at time of search: {weatherSave.data[0]['weather']['description']}</p>
             <p>Temperature: {weatherSave.data[0]['temp']} °C</p>
-            <button onClick={handleDelete}> 🗑 </button>
+            <Button onClick={handleDelete}> Delete 🗑 </Button>
             
             <hr></hr>
         </>

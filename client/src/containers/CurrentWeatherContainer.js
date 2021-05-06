@@ -5,7 +5,7 @@ import ForecastWeather from "../components/ForecastWeather";
 import ForecastWeatherList from "../components/ForecastWeatherList";
 import LocationAsCityForm from "../components/LocationAsCityForm";
 import LocationAsPostcodeForm from "../components/LocationAsPostcodeForm";
-import { Divider} from 'semantic-ui-react';
+import { Header, Divider} from 'semantic-ui-react';
 import { getWeathers, postWeather } from "../WeatherService";
 import WeatherGrid from "../components/WeatherGrid";
 import LocationAsLatLonForm from "../components/LocationAsLatLonForm";
@@ -229,7 +229,6 @@ function CurrentWeatherContainer(){
 
     return(
         <>
-     
         <LocationAsCityForm 
         handleLocationAsCitySubmit={handleLocationAsCitySubmit}
         location={location}

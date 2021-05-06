@@ -21,7 +21,7 @@ function LocationAsLatLonForm({handleLocationAsLatLonSubmit, location, setLocati
                              
                     <Form.Field>
                     <Header>Find Weather by Lat/Lon:</Header>
-                    <Input action='Search' placeholder='e.g. EH10 6JX...' onChange={handleInput}/>
+                    <Input action='Search' placeholder='e.g. 55.95,-3.18...' onChange={handleInput}/>
                     </Form.Field>              
            </Form>
 

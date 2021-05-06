@@ -1,4 +1,5 @@
 import WeatherCard from "./WeatherCard";
+import { Divider,Header } from "semantic-ui-react";
 
 const WeatherGrid = ({weatherSaves, removeWeatherSave}) => {
     const weatherSavesList = weatherSaves.map((weatherSave) =>{
@@ -7,7 +8,8 @@ const WeatherGrid = ({weatherSaves, removeWeatherSave}) => {
     
     return (
         <>
-       Your Recent Weather Location Searches:
+        <Header as="h2">Your Recent Weather Location Searches </Header>
+        <Divider></Divider>
             {weatherSavesList}
         </>
     );
