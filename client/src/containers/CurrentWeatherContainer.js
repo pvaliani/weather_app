@@ -8,6 +8,7 @@ import LocationAsPostcodeForm from "../components/LocationAsPostcodeForm";
 import { Divider} from 'semantic-ui-react';
 import { getWeathers, postWeather } from "../WeatherService";
 import WeatherGrid from "../components/WeatherGrid";
+import LocationAsLatLonForm from "../components/LocationAsLatLonForm";
 
 function CurrentWeatherContainer(){
 
@@ -58,6 +59,18 @@ function CurrentWeatherContainer(){
         getForecastWeatherAsPostcode(location);
     } 
 
+
+    // handles the location submitted by the "as lat/lon" form
+    // invokes the fetch passing the location to getCurrentWeatherAsPostcode
+    const handleLocationAsLatLonSubmit= (location) => {
+        getCurrentWeatherAsLatLon(location);
+        getForecastWeatherAsLatLon(location);
+    } 
+
+
+
+
+
     // This is the fetch which provides currentWeather from the API via location which will be input by the user
     const getCurrentWeatherAsCity = (location) => {
     const url = "https://api.weatherbit.io/v2.0/current?city="+location+"&key=42f951c1eea94e33a68cd790a1f613fb"
@@ -77,11 +90,34 @@ function CurrentWeatherContainer(){
           
         
         })
-    
 
     }
 
- 
+      // This is the fetch which provides currentWeather from the API via location which will be input by the user as Lat/Lon
+      const getCurrentWeatherAsLatLon = (location) => {
+        const url = "https://api.weatherbit.io/v2.0/current?lat="+location[0]+"&lon="+location[1]+"&key=42f951c1eea94e33a68cd790a1f613fb"
+    
+        console.log("Url: " + url);
+        
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setCurrentWeather(data);
+                // once we have the data from the fetch post this 
+                // to the back end
+                postWeather(data).then(()=>{
+                    addWeatherSave(data);
+                })
+              
+            
+            })
+    
+        }
+
+
+
+
 
      // This is the fetch which provides currentWeather from the API via location set as post code
      const getCurrentWeatherAsPostcode = (location) => {
@@ -94,6 +130,9 @@ function CurrentWeatherContainer(){
             .then(data => {
                 // console.log(data);
                 setCurrentWeather(data);
+                postWeather(data).then(()=>{
+                    addWeatherSave(data);
+                })
                 
             })
     
@@ -133,6 +172,22 @@ function CurrentWeatherContainer(){
             }
 
 
+        // This is the fetch which provides forecastWeather from the API via location set as post code
+        const getForecastWeatherAsLatLon = (location) => {
+            const url = "https://api.weatherbit.io/v2.0/current?lat="+location[0]+"&lon="+location[1]+"&key=42f951c1eea94e33a68cd790a1f613fb"
+        
+            console.log("Url: " + url);
+            
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    setForecastWeather(data);
+                })
+        
+            }
+
+
     // Format the user input to the form
     // Pseudocode to format user input for the API
     // Convert string to lower case
@@ -143,12 +198,24 @@ function CurrentWeatherContainer(){
     
     const formatInput = (userInput) => {
         const upperCase = userInput.toUpperCase();
-        // const inputArray = lowerCase.split(",");
+        // const inputArray = upperCase.split(",");
         // const formattedArray = inputArray.map(i => i.trim());
         // const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
         const formattedString = upperCase;
         // // const formattedString = arrayWithUnderscores.toString();
         // console.log(formattedString);
+        return formattedString;
+        // return userInput
+    }
+
+    const formatInputLatLon = (userInput) => {
+        const upperCase = userInput.toUpperCase();
+        const inputArray = upperCase.split(",");
+        const formattedArray = inputArray.map(i => i.trim());
+        // const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
+        const formattedString = formattedArray;
+        // // const formattedString = arrayWithUnderscores.toString();
+        console.log(formattedString);
         return formattedString;
         // return userInput
     }
@@ -170,6 +237,12 @@ function CurrentWeatherContainer(){
         setLocation={setLocation}
         formatInput={formatInput}
         />
+
+        <LocationAsLatLonForm 
+          handleLocationAsLatLonSubmit={handleLocationAsLatLonSubmit}
+          location={location.toString()}
+          setLocation={setLocation}
+          formatInput={formatInputLatLon}/>
         
         {/* Passes the array associated with the data key to currentWeatherList as props */}
         <CurrentWeatherList 

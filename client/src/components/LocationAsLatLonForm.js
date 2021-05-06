@@ -1,18 +1,16 @@
 import { Header, Form, Input } from 'semantic-ui-react'
 
-
-function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, formatInput}) {
+function LocationAsLatLonForm({handleLocationAsLatLonSubmit, location, setLocation, formatInput}) {
 
     const handleInput = (event) => {
         const formattedInput = formatInput(event.target.value);
-        // console.log(formattedInput);
         setLocation(formattedInput);
-        // console.log(location);
+     
     }
 
     const submitLocation = (event) => {
         event.preventDefault();
-        handleLocationAsCitySubmit(location);
+        handleLocationAsLatLonSubmit(location);
     
     }
     return (
@@ -21,8 +19,8 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
             <Form className="form-box" onSubmit={submitLocation}>
                              
                     <Form.Field>
-                    <Header>Find Weather by City Name:</Header>
-                    <Input action='Search' placeholder='e.g. Edinburgh, UK...' onChange={handleInput}/>
+                    <Header>Find Weather by Lat/Lon:</Header>
+                    <Input action='Search' placeholder='e.g. EH10 6JX...' onChange={handleInput}/>
                     </Form.Field>              
            </Form>
 
@@ -30,4 +28,4 @@ function LocationAsCityForm({handleLocationAsCitySubmit, location, setLocation, 
     );
 }
 
-export default LocationAsCityForm;
+export default LocationAsLatLonForm;
