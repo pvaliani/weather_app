@@ -11,10 +11,10 @@ Recent searches are saved to a MongoDB database and returned on the front end to
   - Express
 
 # How to run the app
-- Install packages in client and server folders separately via npm install
-- ```pm run server:dev``` within server
-- Npm run start within client
-- Npm run seeds can be used to clear the DB or run custom seeds of location data
+- Install dependencies in client and server folders separately with ```npm install```
+- ```npm run server:dev``` within server
+- ```npm run start``` within client
+- ```npm run seeds``` can be used to clear the DB or run custom seeds of location data
 
 # Main page
 
