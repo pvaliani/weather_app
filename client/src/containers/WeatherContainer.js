@@ -10,7 +10,7 @@ import WeatherGrid from "../components/WeatherGrid";
 import LocationAsLatLonForm from "../components/LocationAsLatLonForm";
 
 
-function CurrentWeatherContainer(){
+function WeatherContainer(){
 
     // Sets state for the current weather object which is an array
     // also sets state for the location input by the user
@@ -246,4 +246,4 @@ function CurrentWeatherContainer(){
 }
 
 
-export default CurrentWeatherContainer;
+export default WeatherContainer;

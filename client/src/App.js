@@ -1,7 +1,7 @@
 
 import {Container, Grid} from 'semantic-ui-react';
 import AppHeader from './components/AppHeader';
-import CurrentWeatherContainer from "./containers/CurrentWeatherContainer";
+import CurrentWeatherContainer from "./containers/WeatherContainer";
 
 
 function App() {
