@@ -9,6 +9,7 @@ Recent searches are saved to a MongoDB database and returned on the front end to
   - Node
   - MongoDB
   - Express
+  - LogoMakr: https://logomakr.com/
 
 # How to run the app
 - Install dependencies in client and server folders separately with ```npm install```
