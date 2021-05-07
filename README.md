@@ -1,6 +1,6 @@
 # Weatherly - A weather app using the Weatherbit.io API
 
-Weatherly is a full-stack MERN app which was made in 2 days and provides current weather information from the Weatherbit API based on searches by city, postcode or latitude and longitude.
+Weatherly is a full-stack MERN app which was made in 2 days and provides current and forecasted weather information from the Weatherbit API based on searches by city, postcode or latitude and longitude.
 Recent searches are saved to a MongoDB database and returned on the front end to the user. The key is from a free account and has been included here for ease of use if cloning and running the project.
 
 # Tools used
