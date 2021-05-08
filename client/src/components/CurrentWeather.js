@@ -1,4 +1,4 @@
-import {Container, Divider, Header, Image, List, Embed, Grid} from 'semantic-ui-react';
+import {Container, Divider, Header, Grid} from 'semantic-ui-react';
 
 // Renders to view the Current Weather with the props passed down from CurrentWeatherList 
 
